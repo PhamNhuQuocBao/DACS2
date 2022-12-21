@@ -13,6 +13,7 @@ use App\Http\Controllers\statistical;
 use App\Http\Controllers\Management\ReadersController;
 use App\Http\Controllers\Management\ReborrowController;
 use App\Http\Controllers\Management\StoreBooksController;
+use App\Http\Controllers\User\userController;
 use Illuminate\Support\Facades\Auth;
 use Monolog\Handler\RotatingFileHandler;
 
@@ -26,7 +27,8 @@ Route::group(['prefix' => '/'], function () {
 
 //User
 Route::group(['prefix' => '/User'], function () {
-    Route::get('home', [])->name('user.home');
+    Route::get('home', [userController::class, 'index'])->name('user.home');
+    Route::get('/show', [userController::class, 'show'])->name('user.show');
 });
 
 //middleware

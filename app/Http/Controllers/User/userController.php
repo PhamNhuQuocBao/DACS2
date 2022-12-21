@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class userController extends Controller
 {
@@ -15,6 +16,10 @@ class userController extends Controller
     public function index()
     {
         //
+        $list = DB::table('typelists')->get();
+        return view('UI.home_User', [
+            'list' => $list
+        ]);
     }
 
     /**
@@ -44,9 +49,16 @@ class userController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
         //
+        $sql = 'SELECT * FROM sachtonkho';
+        $books = DB::select($sql);
+        $results = DB::table('books')->orWhere('name', 'LIKE', '%' . $request->search . '%')->get();
+        dd($results);
+        return view('UI.list_User', [
+            'results' => $results
+        ]);
     }
 
     /**

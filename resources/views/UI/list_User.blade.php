@@ -15,8 +15,7 @@
             <img src="{{ asset('/public/images/Thuvienvku.png') }}" alt="">
         </div>
         <div class="search">
-            <form action="{{ route('user.show') }}" method="post">
-                @csrf
+            <form action="{{ route('user.show') }}">
                 <input type="text" name="search">
                 <button type="submit" hidden></button>
             </form>
@@ -24,11 +23,23 @@
         <div class="list-genre">
             <ul>
                 @foreach ($list as $item)
-                    <li class="item"><button><a href="http://">{{ $item->nametype }}</a></button></li>
+                    <li class="item">
+                        <a href="http://">
+                            <div class="item-book">
+                                <div class="img">
+                                    <img src="{{ asset('/public/uploads/' . $item->thumbnail) }}" alt="">
+                                </div>
+                                <div class="info">
+                                    <p>Tên sách: {{$item->name}}</p>
+                                    <p>Tác giả: {{$item->author}}</p>
+                                    <p>Số lượng: {{}}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
                 @endforeach
             </ul>
         </div>
-        <div class="slider"></div>
     </main>
 </body>
 
