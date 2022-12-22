@@ -23,6 +23,7 @@ Route::group(['prefix' => '/'], function () {
     Route::get('admin/users/register', [RegisterController::class, 'index1'])->name('showRegister');
     Route::post('admin/users/register/create', [RegisterController::class, 'register'])->name('admin.register');
     Route::post('admin/users/login/store', [LoginController::class, 'store'])->name('admin.users.store');
+    Route::get('logout', [LoginController::class, 'logout'])->name('admin.users.logout');
 });
 
 //User

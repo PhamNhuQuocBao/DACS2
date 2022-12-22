@@ -17,8 +17,10 @@ class userController extends Controller
     {
         //
         $list = DB::table('typelists')->get();
+        $thumbnail = DB::table('books')->get();
         return view('UI.home_User', [
-            'list' => $list
+            'list' => $list,
+            'thumbnail' => $thumbnail,
         ]);
     }
 

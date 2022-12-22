@@ -17,9 +17,7 @@ class LoginController extends Controller
 {
     public function index()
     {
-        return view('admin.users.login', [
-            'title' => 'Đăng Nhập Hệ Thống',
-        ]);
+        return view('admin.users.login');
     }
 
     public function store(Request $request)
@@ -40,14 +38,20 @@ class LoginController extends Controller
             $request->input('remember')
         )) {
             if ($level->level == 1) {
-                return redirect()->route('admin');
+                return redirect()->route('admin', ['name' => Auth::user()]);
             } else {
-                return redirect()->route('user.home');
+                return redirect()->route('user.home', ['name' => Auth::user()]);
             }
 
             // $hashed = Hash::make($request->password);
         }
         Session::flash('error', 'Tài khoản hoặc mật khẩu không đúng');
         return redirect()->back();
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return view('admin.users.login');
     }
 }
