@@ -44,6 +44,7 @@ class RegisterController extends Controller
                                 'name' => $request->name,
                                 'email' => $request->email,
                                 'password' => bcrypt($request->password),
+                                'level' => 2
                             ]
                         );
                         return redirect()->route('login');
@@ -61,6 +62,7 @@ class RegisterController extends Controller
                         'name' => $request->name,
                         'email' => $request->email,
                         'password' => bcrypt($request->password),
+                        'level' => 2
                     ]
                 );
                 return redirect()->route('login');

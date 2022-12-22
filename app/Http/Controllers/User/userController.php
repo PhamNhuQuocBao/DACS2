@@ -27,9 +27,17 @@ class userController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function detail($id)
     {
         //
+        $results = DB::table('books')->where('id', $id)->first();
+        $select = DB::select('SELECT * FROM sachtonkho WHERE id = ' . $id);
+        $lists = DB::table('typelists')->get();
+        return view('UI.details_User', [
+            'results' => $results,
+            'amount' => $select[0],
+            'lists' => $lists
+        ]);
     }
 
     /**
@@ -49,13 +57,23 @@ class userController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function types(Request $request)
     {
         //
-        $sql = 'SELECT * FROM sachtonkho';
-        $books = DB::select($sql);
-        $results = DB::table('books')->orWhere('name', 'LIKE', '%' . $request->search . '%')->get();
-        dd($results);
+        $results = DB::table('books')->Where('idtype', $request->type)->paginate(15);
+        // dd($results);
+        return view('UI.list_User', [
+            'results' => $results
+        ]);
+    }
+
+    public function books(Request $request)
+    {
+        //
+        // $sql = $request->search;
+        // $results = DB::select($sql);
+        $results = DB::table('books')->orWhere('name', 'LIKE', '%' . $request->search . '%')->paginate(15);
+        // dd($results);
         return view('UI.list_User', [
             'results' => $results
         ]);

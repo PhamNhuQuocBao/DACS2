@@ -30,6 +30,8 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
 
+        $level = DB::table('Users')->where('email', $request->email)->first();
+
         if (Auth::attempt(
             [
                 'email' => $request->input('email'),
@@ -37,7 +39,11 @@ class LoginController extends Controller
             ],
             $request->input('remember')
         )) {
-            return redirect()->route('admin');
+            if ($level->level == 1) {
+                return redirect()->route('admin');
+            } else {
+                return redirect()->route('user.home');
+            }
 
             // $hashed = Hash::make($request->password);
         }

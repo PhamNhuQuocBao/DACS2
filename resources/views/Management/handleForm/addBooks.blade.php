@@ -54,35 +54,45 @@
 
                 <div class="row">
                     <div class="col-lg-5">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="type" style="font-weight: bold">Chọn danh mục:</label>
+                                    <select name="type" id="categoryID" class="form-control">
+                                        @foreach ($typelists as $typelist)
+                                            <option value="{{ $typelist->id }}">
+                                                {{ $typelist->nametype }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group" id="uploadfile">
+                                    <label for="fileinput">Hình ảnh:</label>
+                                    <label class="labelfile" for="fileinput">Chọn file</label>
+                                    <input style="display: none" type="file" name="file" id="fileinput"
+                                        onchange="chooseFile(this)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <img src="" id="image" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
                         <div class="form-group">
-                            <label for="type" style="font-weight: bold">Chọn danh mục:</label>
-                            <select name="type" id="categoryID" class="form-control">
-                                @foreach ($typelists as $typelist)
-                                    <option value="{{ $typelist->id }}">
-                                        {{ $typelist->nametype }}
-                                    </option>
-                                @endforeach
-                            </select>
+                            <label for="" class="form-label">Nội dung</label>
+                            <textarea class="form-control" name="note" id="" cols="30" rows="10"></textarea>
                         </div>
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-lg-5">
-                        <div class="form-group" id="uploadfile">
-                            <label for="fileinput">Hình ảnh:</label>
-                            <label class="labelfile" for="fileinput">Chọn file</label>
-                            <input style="display: none" type="file" name="file" id="fileinput"
-                                onchange="chooseFile(this)">
-                        </div>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-lg-5">
-                        <img src="" id="image" alt="">
-                    </div>
-                </div>
 
                 <div class="row">
                     <div class="col-lg-5">

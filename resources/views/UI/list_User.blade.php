@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('/public/css/_homeUser.css') }}">
+    <link rel="stylesheet" href="{{ asset('/public/css/_list_User.css') }}">
     <title>Document</title>
 </head>
 
@@ -15,24 +16,27 @@
             <img src="{{ asset('/public/images/Thuvienvku.png') }}" alt="">
         </div>
         <div class="search">
-            <form action="{{ route('user.show') }}">
+            <form action="{{ route('user.books') }}" method="post">
+                @csrf
                 <input type="text" name="search">
                 <button type="submit" hidden></button>
             </form>
         </div>
         <div class="list-genre">
             <ul>
-                @foreach ($list as $item)
+                @foreach ($results as $item)
                     <li class="item">
-                        <a href="http://">
+                        <a href="{{ route('user.detail', $item->id) }}">
                             <div class="item-book">
                                 <div class="img">
-                                    <img src="{{ asset('/public/uploads/' . $item->thumbnail) }}" alt="">
-                                </div>
-                                <div class="info">
-                                    <p>Tên sách: {{$item->name}}</p>
-                                    <p>Tác giả: {{$item->author}}</p>
-                                    <p>Số lượng: {{}}</p>
+                                    <div class="block">
+                                        <img src="{{ asset('/public/uploads/' . $item->thumbnail) }}" alt="">
+                                    </div>
+                                    <div class="">
+                                        <p class="caption">
+                                            {{ $item->name }}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </a>
@@ -40,6 +44,7 @@
                 @endforeach
             </ul>
         </div>
+        {{ $results->links() }}
     </main>
 </body>
 

@@ -27,8 +27,10 @@ Route::group(['prefix' => '/'], function () {
 
 //User
 Route::group(['prefix' => '/User'], function () {
-    Route::get('home', [userController::class, 'index'])->name('user.home');
-    Route::get('/show', [userController::class, 'show'])->name('user.show');
+    Route::get('/home', [userController::class, 'index'])->name('user.home');
+    Route::get('/detail/{id}', [userController::class, 'detail'])->name('user.detail');
+    Route::post('/books', [userController::class, 'books'])->name('user.books');
+    Route::post('/types', [userController::class, 'types'])->name('user.types');
 });
 
 //middleware

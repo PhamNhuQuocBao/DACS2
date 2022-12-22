@@ -61,6 +61,7 @@ class BooksMain extends Controller
                     'amount' => $request->amount,
                     'thumbnail' => $thumbnail,
                     'idtype' => $request->type,
+                    'note' => $request->note
                 ]);
             }
             session()->flash('success', 'Thêm thành công!');
@@ -116,7 +117,7 @@ class BooksMain extends Controller
                 'amount' => $request->amount,
                 'thumbnail' => $thumbnail,
                 'idtype' => $getNameType->id,
-
+                'note' => $request->note
             ]);
             // unlink('public/uploads/' . $request->imgFile);
             return redirect()->route('managementBooks.index');
@@ -129,7 +130,7 @@ class BooksMain extends Controller
                 'amount' => $request->amount,
                 'thumbnail' => $request->imgFile,
                 'idtype' => $getNameType->id,
-
+                'note' => $request->note
             ]);
             return redirect()->route('managementBooks.index');
         }

@@ -15,7 +15,7 @@
             <img src="{{ asset('/public/images/Thuvienvku.png') }}" alt="">
         </div>
         <div class="search">
-            <form action="{{ route('user.show') }}" method="post">
+            <form action="{{ route('user.books') }}" method="post">
                 @csrf
                 <input type="text" name="search">
                 <button type="submit" hidden></button>
@@ -24,7 +24,13 @@
         <div class="list-genre">
             <ul>
                 @foreach ($list as $item)
-                    <li class="item"><button><a href="http://">{{ $item->nametype }}</a></button></li>
+                    <li class="item">
+                        <form action="{{ route('user.types') }}" method="post">
+                            @csrf
+                            <input type="text" name="type" id="" hidden value="{{ $item->id }}">
+                            <button type="submit">{{ $item->nametype }}</button>
+                        </form>
+                    </li>
                 @endforeach
             </ul>
         </div>
